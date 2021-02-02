@@ -1,7 +1,7 @@
 name: Tests
 
 on:
-  push:
+  pull_request:
     branches:
       - main
       - dev
@@ -18,14 +18,16 @@ jobs:
     runs-on: ubuntu-20.04
     container: docker://epitechcontent/epitest-docker
     steps:
-      - run: mkdir -p path/to/artifact && cd path/to/artifact && touch world.txt
-      - uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: path/to/artifact/world.txt
       - name: Checkout
-        uses: actions/checkout@v2 > path/to/artifact/world.txt
+        uses: actions/checkout@v2
       - name: Run tests
-        run: make tests_run > path/to/artifact/world.txt
+        run: make tests_run
       - name: Get Coverage
+        if: ${{ always() }}
         run: make coverage > path/to/artifact/world.txt
+      - name: Upload coverage artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage_outputs
+          path: ./coverage_outputs
