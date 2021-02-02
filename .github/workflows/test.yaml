@@ -18,8 +18,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: docker://epitechcontent/epitest-docker
     steps:
-      - run: mkdir -p path/to/artifact
-      - run: touch path/to/artifact/world.txt
+      - run: mkdir -p path/to/artifact && cd path/to/artifact && touch world.txt
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
