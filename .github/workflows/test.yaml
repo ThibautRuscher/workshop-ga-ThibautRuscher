@@ -15,10 +15,10 @@ jobs:
         run: echo Welcome to the Github Actions workshop !
   unit_test:
     runs-on: ubuntu-20.04
+    container: epitechcontent/epitest-docker
     steps:
       - name: check and unit_tests and
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: make tests_run
-             make coverage
+      - run: make tests_run && make coverage
