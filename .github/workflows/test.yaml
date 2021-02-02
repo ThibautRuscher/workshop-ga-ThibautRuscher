@@ -18,9 +18,14 @@ jobs:
     runs-on: ubuntu-20.04
     container: docker://epitechcontent/epitest-docker
     steps:
+      - run: mkdir -p path/to/artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: path/to/artifact/world.txt
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2 > path/to/artifact/world.txt
       - name: Run tests
-        run: make tests_run
+        run: make tests_run > path/to/artifact/world.txt
       - name: Get Coverage
-        run: make coverage
+        run: make coverage > path/to/artifact/world.txt
