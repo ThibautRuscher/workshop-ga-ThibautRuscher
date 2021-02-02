@@ -24,7 +24,7 @@ jobs:
         run: make tests_run
       - name: Get Coverage
         if: ${{ always() }}
-        run: make coverage > path/to/artifact/world.txt
+        run: make coverage > coverage_outputs
       - name: Upload coverage artifact
         if: ${{ always() }}
         uses: actions/upload-artifact@v2
