@@ -16,8 +16,8 @@ jobs:
   unit_test:
     runs-on: ubuntu-20.04
     steps:
-      - name: check and unit_tests and coverage
-        uses: actions/checkout@v2
+      - name: check and unit_tests and
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          run: make tests_run && make coverage
+      - run: make tests_run && make coverage
