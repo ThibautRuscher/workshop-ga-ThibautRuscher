@@ -31,3 +31,18 @@ jobs:
         with:
           name: coverage_outputs
           path: ./coverage_outputs
+
+  function_test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run functional tests
+        if: ${{ always() }}
+        run: ./functional-test.sh > function-tests_outputs
+      - name: Upload coverage artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: function-tests_outputs
+          path: ./function-tests_outputs
